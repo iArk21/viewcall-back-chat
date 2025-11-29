@@ -7,6 +7,9 @@ import chatRoutes from "./routes/chatRoutes.js";
 import { connectDB } from "./config/db.js";
 import setupChatSocket from "./sockets/chatSocket.js";
 import rateLimit from "express-rate-limit";
+import meetingRoutes from "./routes/meetingRoutes.js";
+
+
 
 dotenv.config();
 console.log("🔍 ENV LOADED:", {
@@ -30,6 +33,8 @@ app.use(limiter);
 
 // rutas REST
 app.use("/api/chat", chatRoutes);
+
+app.use("/api/meetings", meetingRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server, {
